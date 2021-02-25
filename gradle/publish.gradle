@@ -34,6 +34,11 @@ def getRepositoryPassword() {
   return hasProperty('NEXUS_PASSWORD') ? NEXUS_PASSWORD : ""
 }
 
+task sourcesJar(type: Jar) {
+  from android.sourceSets.main.java.srcDirs
+  classifier= 'sources'
+}
+
 afterEvaluate { project ->
   publishing {
     publications {
@@ -42,6 +47,7 @@ afterEvaluate { project ->
       release(MavenPublication) {
         // Applies the component for the debug build variant.
         from components.release
+        artifact sourcesJar
 
         //groupId = 'com.example.MyLibrary'
         groupId = GROUP
