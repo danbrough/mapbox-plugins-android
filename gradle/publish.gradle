@@ -51,7 +51,7 @@ afterEvaluate { project ->
 
         //groupId = 'com.example.MyLibrary'
         groupId = GROUP
-        artifactId = POM_ARTIFACT_ID
+        artifactId = project.name 
         version = VERSION_NAME
       }
     }
