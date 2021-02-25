@@ -35,6 +35,21 @@ def getRepositoryPassword() {
 }
 
 afterEvaluate { project ->
+  publishing {
+    publications {
+      // Creates a Maven publication called "release".
+      //Creates a Maven publication called “debug”.
+      release(MavenPublication) {
+        // Applies the component for the debug build variant.
+        from components.release
+
+        //groupId = 'com.example.MyLibrary'
+        groupId = GROUP
+        artifactId = POM_ARTIFACT_ID
+        version = VERSION_NAME
+      }
+    }
+  }
   uploadArchives {
     repositories {
       mavenDeployer {
